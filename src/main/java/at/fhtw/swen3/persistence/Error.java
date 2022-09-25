@@ -1,5 +1,4 @@
 package at.fhtw.swen3.persistence;
-
 import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;

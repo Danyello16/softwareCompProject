@@ -9,6 +9,7 @@ import at.fhtw.swen3.persistence.Error;
 import at.fhtw.swen3.persistence.NewParcelInfo;
 import at.fhtw.swen3.persistence.Parcel;
 import at.fhtw.swen3.persistence.TrackingInformation;
+import at.fhtw.swen3.services.impl.ApiUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -27,8 +28,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
