@@ -16,7 +16,7 @@ public class OpenApiGeneratorApplication {
     }
 
     @Bean
-    public Module jsonNullableModule() {
+    public JsonNullableModule jsonNullableModule() {
         return new JsonNullableModule();
     }
 
