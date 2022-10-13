@@ -1,10 +1,5 @@
 package at.fhtw.swen3.services.impl;
 
-import at.fhtw.swen3.persistence.Error;
-import at.fhtw.swen3.persistence.NewParcelInfo;
-import at.fhtw.swen3.persistence.Parcel;
-import at.fhtw.swen3.persistence.TrackingInformation;
-
 
 import at.fhtw.swen3.services.ParcelApi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +17,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.context.request.NativeWebRequest;
 
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 

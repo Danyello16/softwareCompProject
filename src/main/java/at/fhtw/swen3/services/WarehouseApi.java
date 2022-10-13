@@ -5,17 +5,15 @@
  */
 package at.fhtw.swen3.services;
 
-import at.fhtw.swen3.persistence.Error;
-import at.fhtw.swen3.persistence.Hop;
-import at.fhtw.swen3.persistence.Warehouse;
+import at.fhtw.swen3.services.dto.Error;
+import at.fhtw.swen3.services.dto.Hop;
+import at.fhtw.swen3.services.dto.Warehouse;
 import at.fhtw.swen3.services.impl.ApiUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,9 +24,10 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 import java.util.Optional;
 import javax.annotation.Generated;
+
+import static org.springframework.http.MediaType.*;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-23T12:35:41.388911Z[Etc/UTC]")
 @Validated
@@ -70,8 +69,8 @@ public interface WarehouseApi {
         
     ) {
         getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+            for (MediaType mediaType: parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(valueOf("application/json"))) {
                     String exampleString = "null";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
@@ -114,8 +113,8 @@ public interface WarehouseApi {
         @Parameter(name = "code", description = "", required = true) @PathVariable("code") String code
     ) {
         getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+            for (MediaType mediaType: parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(valueOf("application/json"))) {
                     String exampleString = "{ \"code\" : \"code\", \"locationName\" : \"locationName\", \"processingDelayMins\" : 0, \"hopType\" : \"hopType\", \"description\" : \"description\", \"locationCoordinates\" : { \"lon\" : 1.4658129805029452, \"lat\" : 6.027456183070403 } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
