@@ -36,13 +36,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-secret-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-        use_existing_version_if_available: false
-        application_name: spring-boot-deploy
-        environment_name: Springbootdeploy-env
-        version_label: ${{github.SHA}}
         aws-region: us-east-1
-        deployment_package: data-0.0.1-SNAPSHOT.jar
 
     - name: Login to Amazon ECR
       id: login-ecr
