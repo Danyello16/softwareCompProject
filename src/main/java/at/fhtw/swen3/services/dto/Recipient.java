@@ -1,33 +1,40 @@
 package at.fhtw.swen3.services.dto;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-
-import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 import javax.annotation.Generated;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import java.util.Objects;
 
 /**
  * Recipient
  */
 
 @JsonTypeName("recipient")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-23T12:35:41.388911Z[Etc/UTC]")
+@AllArgsConstructor //for Constructor in RecipientMapper
+@Builder
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
 public class Recipient {
+
 
   @JsonProperty("name")
   private String name;
 
   @JsonProperty("street")
+  @Pattern(regexp = "[\\p{L}]+(\\s\\p{L}*[.]?)*\\s[0-9]*[\\p{L}]*((\\/)[0-9]*)*", message = "must match street name regex (Street, blank, number (number, slashes, characters)")
   private String street;
 
   @JsonProperty("postalCode")
+  @Pattern(regexp = "^\\bA-\\b[0-9]{4}$", message = "must match postal code regex (\"A-\", 4 digits, 0000-9999)")
   private String postalCode;
 
   @JsonProperty("city")
+  @Pattern(regexp = "^[a-zA-Z]+(?:[\\s-][a-zA-Z]+)*$", message = "must match city name regex e.g.San-Francisco")
   private String city;
 
   @JsonProperty("country")
@@ -41,8 +48,8 @@ public class Recipient {
   /**
    * Name of person or company.
    * @return name
-  */
-  @NotNull 
+   */
+  @NotNull
   @Schema(name = "name", description = "Name of person or company.", required = true)
   public String getName() {
     return name;
@@ -60,8 +67,8 @@ public class Recipient {
   /**
    * Street
    * @return street
-  */
-  @NotNull 
+   */
+  @NotNull
   @Schema(name = "street", description = "Street", required = true)
   public String getStreet() {
     return street;
@@ -79,8 +86,8 @@ public class Recipient {
   /**
    * Postalcode
    * @return postalCode
-  */
-  @NotNull 
+   */
+  @NotNull
   @Schema(name = "postalCode", description = "Postalcode", required = true)
   public String getPostalCode() {
     return postalCode;
@@ -98,8 +105,8 @@ public class Recipient {
   /**
    * City
    * @return city
-  */
-  @NotNull 
+   */
+  @NotNull
   @Schema(name = "city", description = "City", required = true)
   public String getCity() {
     return city;
@@ -117,8 +124,8 @@ public class Recipient {
   /**
    * Country
    * @return country
-  */
-  @NotNull 
+   */
+  @NotNull
   @Schema(name = "country", description = "Country", required = true)
   public String getCountry() {
     return country;
@@ -138,10 +145,10 @@ public class Recipient {
     }
     Recipient recipient = (Recipient) o;
     return Objects.equals(this.name, recipient.name) &&
-        Objects.equals(this.street, recipient.street) &&
-        Objects.equals(this.postalCode, recipient.postalCode) &&
-        Objects.equals(this.city, recipient.city) &&
-        Objects.equals(this.country, recipient.country);
+            Objects.equals(this.street, recipient.street) &&
+            Objects.equals(this.postalCode, recipient.postalCode) &&
+            Objects.equals(this.city, recipient.city) &&
+            Objects.equals(this.country, recipient.country);
   }
 
   @Override

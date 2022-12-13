@@ -1,23 +1,22 @@
 package at.fhtw.swen3.services.dto;
 
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-
-import javax.validation.Valid;
-import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
-
+import lombok.Builder;
 
 import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * WarehouseAllOfNextHops
  */
 
 @JsonTypeName("warehouse_allOf_nextHops")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-23T12:35:41.388911Z[Etc/UTC]")
+@Builder
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
 public class WarehouseNextHops {
 
   @JsonProperty("traveltimeMins")
@@ -34,8 +33,8 @@ public class WarehouseNextHops {
   /**
    * Get traveltimeMins
    * @return traveltimeMins
-  */
-  @NotNull 
+   */
+  @NotNull
   @Schema(name = "traveltimeMins", required = true)
   public Integer getTraveltimeMins() {
     return traveltimeMins;
@@ -53,8 +52,8 @@ public class WarehouseNextHops {
   /**
    * Get hop
    * @return hop
-  */
-  @NotNull @Valid 
+   */
+  @NotNull @Valid
   @Schema(name = "hop", required = true)
   public Hop getHop() {
     return hop;
@@ -72,9 +71,9 @@ public class WarehouseNextHops {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WarehouseNextHops warehouseAllOfNextHops = (WarehouseNextHops) o;
-    return Objects.equals(this.traveltimeMins, warehouseAllOfNextHops.traveltimeMins) &&
-        Objects.equals(this.hop, warehouseAllOfNextHops.hop);
+    WarehouseNextHops warehouseNextHops = (WarehouseNextHops) o;
+    return Objects.equals(this.traveltimeMins, warehouseNextHops.traveltimeMins) &&
+            Objects.equals(this.hop, warehouseNextHops.hop);
   }
 
   @Override

@@ -1,31 +1,26 @@
 package at.fhtw.swen3.services.dto;
 
-import java.util.Objects;
-
-import at.fhtw.swen3.persistence.entity.Parcel;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.Column;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.Builder;
 
 import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * TrackingInformation
  */
-@Getter @Setter
-@Parcel
+
 @JsonTypeName("trackingInformation")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-23T12:35:41.388911Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
+@Builder
 public class TrackingInformation {
 
   /**
@@ -33,13 +28,13 @@ public class TrackingInformation {
    */
   public enum StateEnum {
     PICKUP("Pickup"),
-    
+
     INTRANSPORT("InTransport"),
-    
+
     INTRUCKDELIVERY("InTruckDelivery"),
-    
+
     TRANSFERRED("Transferred"),
-    
+
     DELIVERED("Delivered");
 
     private String value;
@@ -69,16 +64,13 @@ public class TrackingInformation {
     }
   }
 
-  @Column
   @JsonProperty("state")
   private StateEnum state;
 
-  @Column
   @JsonProperty("visitedHops")
   @Valid
   private List<HopArrival> visitedHops = new ArrayList<>();
 
-  @Column
   @JsonProperty("futureHops")
   @Valid
   private List<HopArrival> futureHops = new ArrayList<>();
@@ -91,8 +83,8 @@ public class TrackingInformation {
   /**
    * State of the parcel.
    * @return state
-  */
-  @NotNull 
+   */
+  @NotNull
   @Schema(name = "state", description = "State of the parcel.", required = true)
   public StateEnum getState() {
     return state;
@@ -115,8 +107,8 @@ public class TrackingInformation {
   /**
    * Hops visited in the past.
    * @return visitedHops
-  */
-  @NotNull @Valid 
+   */
+  @NotNull @Valid
   @Schema(name = "visitedHops", description = "Hops visited in the past.", required = true)
   public List<HopArrival> getVisitedHops() {
     return visitedHops;
@@ -139,8 +131,8 @@ public class TrackingInformation {
   /**
    * Hops coming up in the future - their times are estimations.
    * @return futureHops
-  */
-  @NotNull @Valid 
+   */
+  @NotNull @Valid
   @Schema(name = "futureHops", description = "Hops coming up in the future - their times are estimations.", required = true)
   public List<HopArrival> getFutureHops() {
     return futureHops;
@@ -160,8 +152,8 @@ public class TrackingInformation {
     }
     TrackingInformation trackingInformation = (TrackingInformation) o;
     return Objects.equals(this.state, trackingInformation.state) &&
-        Objects.equals(this.visitedHops, trackingInformation.visitedHops) &&
-        Objects.equals(this.futureHops, trackingInformation.futureHops);
+            Objects.equals(this.visitedHops, trackingInformation.visitedHops) &&
+            Objects.equals(this.futureHops, trackingInformation.futureHops);
   }
 
   @Override

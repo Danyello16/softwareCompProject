@@ -1,30 +1,33 @@
 package at.fhtw.swen3.services.dto;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import java.time.OffsetDateTime;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.Valid;
-import javax.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
-
-
 import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import java.time.OffsetDateTime;
+import java.util.Objects;
 
 /**
  * HopArrival
  */
 
 @JsonTypeName("hopArrival")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-23T12:35:41.388911Z[Etc/UTC]")
+@Builder
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
 public class HopArrival {
 
   @JsonProperty("code")
+  @Pattern(regexp = " ^[A-Z]{4}\\d{1,4}$", message = "must match postal code regex")
   private String code;
 
   @JsonProperty("description")
+  @Pattern(regexp = " ^[A-Za-z0-9\\s\\-]$", message = "text")
   private String description;
 
   @JsonProperty("dateTime")
@@ -39,8 +42,8 @@ public class HopArrival {
   /**
    * Unique CODE of the hop.
    * @return code
-  */
-  @NotNull @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$") 
+   */
+  @NotNull @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$")
   @Schema(name = "code", description = "Unique CODE of the hop.", required = true)
   public String getCode() {
     return code;
@@ -58,8 +61,8 @@ public class HopArrival {
   /**
    * Description of the hop.
    * @return description
-  */
-  @NotNull 
+   */
+  @NotNull
   @Schema(name = "description", description = "Description of the hop.", required = true)
   public String getDescription() {
     return description;
@@ -77,8 +80,8 @@ public class HopArrival {
   /**
    * The date/time the parcel arrived at the hop.
    * @return dateTime
-  */
-  @NotNull @Valid 
+   */
+  @NotNull @Valid
   @Schema(name = "dateTime", description = "The date/time the parcel arrived at the hop.", required = true)
   public OffsetDateTime getDateTime() {
     return dateTime;
@@ -98,8 +101,8 @@ public class HopArrival {
     }
     HopArrival hopArrival = (HopArrival) o;
     return Objects.equals(this.code, hopArrival.code) &&
-        Objects.equals(this.description, hopArrival.description) &&
-        Objects.equals(this.dateTime, hopArrival.dateTime);
+            Objects.equals(this.description, hopArrival.description) &&
+            Objects.equals(this.dateTime, hopArrival.dateTime);
   }
 
   @Override
