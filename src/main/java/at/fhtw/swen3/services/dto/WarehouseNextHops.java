@@ -1,16 +1,13 @@
 package at.fhtw.swen3.services.dto;
 
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-
-import javax.validation.Valid;
-import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-
 import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * WarehouseAllOfNextHops
@@ -84,7 +81,7 @@ public class WarehouseNextHops {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
+    StringBuilder sb = new StringBuilder(); //something
     sb.append("class WarehouseAllOfNextHops {\n");
     sb.append("    traveltimeMins: ").append(toIndentedString(traveltimeMins)).append("\n");
     sb.append("    hop: ").append(toIndentedString(hop)).append("\n");
