@@ -17,5 +17,6 @@ public class OpenApiGeneratorApplication {
     public Module jsonNullableModule() {
         return new JsonNullableModule();
     }
+    //Change for commit to trigger the CD pipelines
 
 }
