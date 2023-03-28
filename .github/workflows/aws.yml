@@ -39,4 +39,4 @@ jobs:
         application_name: ${{ env.EB_APPLICATION_NAME }}
         environment_name: ${{ env.EB_ENVIRONMENT_NAME }}
         version_label: ${{ github.sha }}
-        aws-region: ${{ env.AWS_REGION }}
+        Region: ${{ env.AWS_REGION }}
