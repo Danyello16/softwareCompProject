@@ -40,3 +40,4 @@ jobs:
         environment_name: ${{ env.EB_ENVIRONMENT_NAME }}
         version_label: ${{ github.sha }}
         Region: ${{ env.AWS_REGION }}
+        deployment_package: deploy.zip
