@@ -5,7 +5,7 @@ FROM openjdk:11-jdk-slim
 WORKDIR /app
 
 # Copy the necessary files from the build context to the container
-COPY target/openapi-spring-*.jar /app/app.jar
+COPY software-comp-project-master/target/openapi-spring-*.jar /app/app.jar
 
 # Expose the port that the application listens on
 EXPOSE 8080
