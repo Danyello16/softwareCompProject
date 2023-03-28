@@ -5,9 +5,9 @@ on:
     branches: [ "master" ]
 
 env:
-  AWS_REGION: MY_AWS_REGION                   # set this to your preferred AWS region, e.g. us-west-1
-  EB_APPLICATION_NAME: MY_EB_APPLICATION_NAME # set this to your Elastic Beanstalk application name
-  EB_ENVIRONMENT_NAME: MY_EB_ENVIRONMENT_NAME # set this to your Elastic Beanstalk environment name
+  AWS_REGION: us-east-1                   # set this to your preferred AWS region, e.g. us-west-1
+  EB_APPLICATION_NAME: software-comp-beanstalk # set this to your Elastic Beanstalk application name
+  EB_ENVIRONMENT_NAME: e-uvsnthymm2 # set this to your Elastic Beanstalk environment name
 
 permissions:
   contents: read
