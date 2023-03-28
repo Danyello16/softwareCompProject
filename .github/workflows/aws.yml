@@ -7,7 +7,7 @@ on:
 env:
   AWS_REGION: us-east-1                   # set this to your preferred AWS region, e.g. us-west-1
   EB_APPLICATION_NAME: software-comp-beanstalk # set this to your Elastic Beanstalk application name
-  EB_ENVIRONMENT_NAME: e-uvsnthymm2 # set this to your Elastic Beanstalk environment name
+  EB_ENVIRONMENT_NAME: Softwarecompbeanstalk-env # set this to your Elastic Beanstalk environment name
 
 permissions:
   contents: read
@@ -29,6 +29,7 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: ${{ env.AWS_REGION }}
+        Region: ${{ env.AWS_REGION }}
 
     - name: Package and deploy to Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v17
