@@ -2,12 +2,13 @@ name: CD
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
 
 env:
-  AWS_REGION: us-east-1                   # set this to your preferred AWS region, e.g. us-west-1
+  AWS_REGION: us-east-1 # set this to your preferred AWS region, e.g. us-west-1
   EB_APPLICATION_NAME: software-comp-beanstalk # set this to your Elastic Beanstalk application name
   EB_ENVIRONMENT_NAME: Softwarecompbeanstalk-env # set this to your Elastic Beanstalk environment name
+  DOCKER_IMAGE_NAME: Softwarecompbeanstalk-img # set this to your Elastic Beanstalk environment name
 
 permissions:
   contents: read
@@ -19,28 +20,48 @@ jobs:
     environment: production
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Generate deployment package
-      run: zip -r deploy.zip . -x '*.git*'
-      
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-        aws-region: ${{ env.AWS_REGION }}
-        Region: ${{ env.AWS_REGION }}
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: us-east-1
 
-    - name: Package and deploy to Elastic Beanstalk
-      uses: einaregilsson/beanstalk-deploy@v21
-      with:
-        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: ${{ env.EB_APPLICATION_NAME }}
-        environment_name: ${{ env.EB_ENVIRONMENT_NAME }}
-        version_label: ${{ github.sha }}
-        Region: ${{ env.AWS_REGION }}
-        deployment_package: deploy.zip
+      - name: Install EB CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install python3-pip
+          sudo pip3 install --upgrade pip
+          sudo pip3 install awsebcli --upgrade --user
+
+      - name: Authenticate to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Create zip file
+        run: |
+          zip -r deployment.zip . -x "*.git*" -x "*.zip*" -x "*aws.yml*"
+
+      - name: Upload zip file to S3
+        uses: aws-actions/upload-artifact@v2
+        with:
+          name: deployment
+          path: deployment.zip
+          bucket: ${{ env.S3_BUCKET }}
+
+      - name: Create Elastic Beanstalk environment
+        run: |
+          eb init ${{ env.EB_APPLICATION_NAME }} --region ${{ env.AWS_REGION }} --platform "Docker" --key-name "aws-eb" --no-interactive
+          eb create ${{ env.EB_ENVIRONMENT_NAME }} --elb-type "classic" --instance-type "t2.micro" --envvars "DOCKER_IMAGE_NAME=${{ env.DOCKER_IMAGE_NAME }}" --no-interactive
+
+      - name: Deploy to Elastic Beanstalk
+        run: |
+          eb deploy --staged --timeout 30 --label "${{ github.sha }}" --message "${{ github.event.head_commit.message }}" --no-interactive
+
+      - name: Cleanup
+        run: |
+          rm deployment.zip
