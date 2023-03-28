@@ -30,8 +30,6 @@ jobs:
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: ${{ env.AWS_REGION }}
 
-    - name: Build and package JAR
-      run: ./gradlew bootJar
 
     - name: Package and deploy to Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v21
@@ -41,4 +39,4 @@ jobs:
         application_name: ${{ env.EB_APPLICATION_NAME }}
         environment_name: ${{ env.EB_ENVIRONMENT_NAME }}
         version_label: ${{ github.sha }}
-        deployment_package: build/libs/*.jar
+        deployment_package: software-comp-project-master/target/openapi-spring-*.jar
