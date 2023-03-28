@@ -40,4 +40,4 @@ jobs:
         environment_name: ${{ env.EB_ENVIRONMENT_NAME }}
         Region: ${{ env.AWS_REGION }}
         version_label: ${{ github.sha }}
-        deployment_package: ../../software-comp-project-master/target/openapi-spring-*.jar
+        deployment_package: target/openapi-spring-*.jar
