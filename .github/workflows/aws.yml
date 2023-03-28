@@ -41,3 +41,4 @@ jobs:
         Region: ${{ env.AWS_REGION }}
         version_label: ${{ github.sha }}
         application_source: ./target/openapi-spring-*.jar
+        deployment_package: ./target/openapi-spring-*.jar
