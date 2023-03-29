@@ -1,7 +1,7 @@
-package at.fhtw.swen3.gps.service.impl;
+package at.fhtw.swen3.persistence.gps.service.impl;
 
-import at.fhtw.swen3.gps.HttpDataHandler;
-import at.fhtw.swen3.gps.service.GeoEncodingService;
+import at.fhtw.swen3.persistence.gps.HttpDataHandler;
+import at.fhtw.swen3.persistence.gps.service.GeoEncodingService;
 import at.fhtw.swen3.services.dto.GeoCoordinate;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;

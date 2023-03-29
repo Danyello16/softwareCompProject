@@ -143,7 +143,7 @@ public interface ParcelApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<NewParcelInfo> submitParcel(
-        @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody Parcel parcel
+         @RequestBody Parcel parcel
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {

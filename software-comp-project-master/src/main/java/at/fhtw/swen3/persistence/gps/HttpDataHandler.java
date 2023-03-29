@@ -1,4 +1,4 @@
-package at.fhtw.swen3.gps;
+package at.fhtw.swen3.persistence.gps;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;

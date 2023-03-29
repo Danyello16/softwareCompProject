@@ -41,21 +41,21 @@ class IntegrationTestsApplicationTests {
     void contextLoads() {
     }
 
-    @Test
+    @org.testng.annotations.Test
     public void submitParcelTest() throws IOException, InterruptedException {
 
         String parcelJson = """
                 {
                   "weight": 0.1,
                   "recipient": {
-                     "name": "Clemens Rinner",
+                     "name": "Max Mustermann",
                      "street": "Heigerleinstraße 38/38",
                      "postalCode": "A-1030",
                      "city": "Wien",
                      "country": "Österreich"
                    },
                   "sender": {
-                     "name": "David Kenner",
+                     "name": "John Doe",
                      "street": "Baumgasse 60/70",
                      "postalCode": "A-1160",
                      "city": "Wien",
